@@ -1,0 +1,29 @@
+# Dependencias del Agente de Escucha Activa y Publicación Automática
+
+# Twitch y descargas
+requests>=2.31.0
+yt-dlp>=2024.0.0
+pyyaml>=6.0.1
+python-dotenv>=1.0.1
+
+# LLM y Optimización de Tokens (Llamada única consolidada)
+pydantic>=2.7.0
+google-genai>=0.1.1
+openai>=1.20.0
+
+# Higgsfield AI
+higgsfield-client>=0.1.0
+
+# Publicación en YouTube
+google-api-python-client>=2.120.0
+google-auth-oauthlib>=1.2.0
+google-auth-httplib2>=0.2.0
+
+# Publicación en TikTok
+tiktok-uploader>=0.1.0
+playwright>=1.40.0
+
+# NOTA sobre Transcripción Local:
+# 'faster-whisper' requiere Python 3.10, 3.11 o 3.12 (por dependencias de onnxruntime).
+# Si usas Python 3.11 o 3.12, puedes instalarlo manualmente con:
+# pip install faster-whisper

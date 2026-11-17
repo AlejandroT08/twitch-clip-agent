@@ -1,0 +1,15 @@
+.env
+.env.local
+client_secret.json
+yt_token.pickle
+*.pickle
+tiktok_cookies.txt
+clips_history.db
+*.db
+downloads/
+outputs/
+*.mp4
+*.srt
+venv/
+__pycache__/
+*.pyc

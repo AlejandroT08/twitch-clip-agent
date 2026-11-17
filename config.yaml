@@ -1,0 +1,60 @@
+# =======================================================
+# CONFIGURACIÓN DEL AGENTE DE ESCUCHA ACTIVA
+# =======================================================
+
+twitch:
+  # Lista de canales de Twitch que el agente monitoreará en paralelo
+  # Puedes escribir solo el usuario ("rubius") o la URL completa ("https://www.twitch.tv/rubius")
+  monitored_channels:
+    - "rubius"
+    # Para agregar más streamers después, añade una línea nueva con "- \"nombre_canal\""
+
+  # Intervalo de sondeo en segundos (30s recomendado para no saturar)
+  poll_interval_seconds: 30
+
+  # Solo capturar clips si el streamer está transmitiendo en vivo actualmente
+  only_when_live: true
+
+  # Ventana de tiempo hacia atrás para buscar clips recién creados (en segundos)
+  lookback_seconds: 120
+
+  # Filtro mínimo de duración del clip en segundos
+  min_duration_seconds: 10
+  max_duration_seconds: 60
+
+transcription:
+  # Modelo local Whisper (tiny, base, small). Consumo: 0 tokens en la nube.
+  model_size: "base"
+  device: "cpu" # Cambiar a "cuda" si tienes tarjeta NVIDIA
+
+higgsfield:
+  # Modelos oficiales de Higgsfield Seedance 2.5:
+  # - "bytedance/seedance-2.5/video-edit"    -> Edita/transforma el clip real de Twitch con tu prompt
+  # - "bytedance/seedance-2.5/text-to-video" -> Crea un video 100% nuevo desde el prompt del momento
+  model: "bytedance/seedance-2.5/video-edit"
+  # Duración máxima enviada a Higgsfield (Seedance video-edit soporta máx. 30s; 10-15s ahorra créditos)
+  max_input_seconds: 15
+  # Opciones usadas si eliges "text-to-video"
+  duration: 5
+  resolution: "720p"
+  aspect_ratio: "9:16"
+  generate_audio: true
+  # Estilo base que el LLM incorporará en sus prompts generados
+  base_style: "Dynamic cinematic animation, hyper-detailed, vibrant colors, trending on TikTok, include bold dynamic Spanish subtitles (subtítulos en español) synchronized with the speech at the lower-center of the screen"
+
+token_economy:
+  # Proveedor de IA económica ("gemini", "openai" o "ollama")
+  provider: "gemini"
+  model_name: "gemini-3.5-flash-lite"
+  # Límite estricto de caracteres de transcripción para no inflar tokens de entrada
+  max_transcript_chars: 500
+
+publishing:
+  youtube:
+    enabled: true
+    privacy_status: "public" # Opciones: "public", "unlisted", "private"
+    category_id: "20"        # 20 = Gaming
+  
+  tiktok:
+    enabled: true
+    headless_browser: true
